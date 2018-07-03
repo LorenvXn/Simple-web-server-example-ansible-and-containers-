@@ -1,0 +1,18 @@
+#this to be put under /etc/ansible/hosts
+#change do not forget to change the IPs
+
+[controller]
+control ansible_connection=local
+
+[loadbalancer]
+tron@172.17.0.3
+
+[webserver]
+tron@172.17.0.4
+tron@172.17.0.5
+
+[web1]
+tron@172.17.0.4
+
+[web2]
+tron@172.17.0.5
