@@ -1,0 +1,8 @@
+
+Build:
+
+docker build -t . 
+
+Run:
+
+docker run -ti [container ID] /bin/bash
