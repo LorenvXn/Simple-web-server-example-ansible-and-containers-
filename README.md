@@ -332,9 +332,14 @@ root@controller:/#
 
 ```
 
-Wow, your browser should be now populated by evil munchkins! 
+Wow, your browser should be populated by evil munchkins gifs, by now! 
+
+<i>on host 172.17.0.4</i>
+![ScreenShot](https://github.com/Satanette/test/blob/master/more_kittens.png)
 
 
+<i>on host 172.17.0.5</i>
+![ScreenShot](https://github.com/Satanette/test/blob/master/kittens.png)
 
 
 
