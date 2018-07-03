@@ -3,7 +3,7 @@
 
 We will be dealing with four ssh containers:
 
-1. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/controller/Dockerfile>controller</a> -- ansible will be installed on this container, and it will deploy changes on all other containers
+1. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/controller/Dockerfile">controller</a> -- ansible will be installed on this container, and it will deploy changes on all other containers
 2. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">loadbalancer</a> -- nginx load balancer is deployed on this container
 3. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web1</a> -- apache2 is deployed on this container
 4. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web2</a> -- apache 2 is deployed on this container
