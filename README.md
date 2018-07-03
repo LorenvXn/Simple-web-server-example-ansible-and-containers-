@@ -316,7 +316,17 @@ tron@172.17.0.5            : ok=7    changed=4    unreachable=0    failed=0
 
 ... a few tests:
 
+Check if apache is installed and up and running (it better be!):
+
+```
+root@8web1:/# /etc/init.d/apache2 status
+ * apache2 is running
+
+root@web2:/# /etc/init.d/apache2 status
+ * apache2 is running
 ``` 
+Now, let's see if there is anything on-going on port 80:
+```
 root@controller:/# telnet 172.17.0.5 80
 Trying 172.17.0.5...
 Connected to 172.17.0.5.
@@ -349,4 +359,4 @@ Wow, your browser should be populated by evil munchkins gifs, by now!
 
 
 
-
+Fini!
