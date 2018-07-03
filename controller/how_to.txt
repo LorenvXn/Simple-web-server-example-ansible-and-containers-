@@ -1,4 +1,6 @@
 
+Create a new folder, under which you add/edit the Dockerfile, then:
+
 Build:
 
 docker build -t . 
