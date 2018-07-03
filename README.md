@@ -178,10 +178,11 @@ tron@172.17.0.4 | SUCCESS => {
 
 <b> Time to install services, apply changes...and all that jazz...</b> 
 
-1) Install nginx on loadbalancer container:
+1) Install nginx on loadbalancer container (and you should see something similar):
 
-``` root@controller:/# ansible-playbook loadbalancer.yml --ask-become-pass
-SUDO password: 
+``` 
+root@controller:/# ansible-playbook loadbalancer.yml --ask-become-pass
+SUDO password:  <-- you put here your user's password (in this case, tron)
 
 PLAY [loadbalancer] ***************************************************************************************************************************************************************************
 
@@ -202,4 +203,140 @@ tron@172.17.0.3            : ok=4    changed=0    unreachable=0    failed=0
 
 root@controller:/# 
 ```
+
+Do a test:
+```
+root@controller:/# curl -v http://172.17.0.2:80
+* Rebuilt URL to: http://172.17.0.3:80/
+*   Trying 172.17.0.3...
+* Connected to 172.17.0.3 (172.17.0.3) port 80 (#0)
+> GET / HTTP/1.1
+> Host: 172.17.0.3
+> User-Agent: curl/7.47.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: nginx/1.10.3 (Ubuntu)
+< Date: Tue, 03 Jul 2018 15:50:12 GMT
+< Content-Type: text/html
+< Content-Length: 612
+< Last-Modified: Fri, 29 Jun 2018 16:16:45 GMT
+< Connection: keep-alive
+[ ---- snip ---- ]
+< 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+* Connection #0 to host 172.17.0.3 left intact
+```
+
+Nice! Nginx is installed and running!
+
+<b> Onto the next one... </b>
+
+Install apache2 on web1 and web2:
+
+```
+root@controller:/# ansible-playbook webserver.yml --ask-become-pass
+
+SUDO password:  <-- your username's passwd again
+
+PLAY [webserver] ******************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************
+ok: [tron@172.17.0.5]
+ok: [tron@172.17.0.4]
+
+TASK [install apache] *************************************************************************************************************************************************************************
+ok: [tron@172.17.0.5]
+ok: [tron@172.17.0.4]
+
+TASK [deleted index.html] *********************************************************************************************************************************************************************
+changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
+
+RUNNING HANDLER [restart apache2] *************************************************************************************************************************************************************
+changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
+
+PLAY [web1] ***********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************
+ok: [tron@172.17.0.4]
+
+TASK [set up index.html for first web server] *************************************************************************************************************************************************
+changed: [tron@172.17.0.4]
+
+RUNNING HANDLER [restart apache2] *************************************************************************************************************************************************************
+changed: [tron@172.17.0.4]
+
+PLAY [web2] ***********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************
+ok: [tron@172.17.0.5]
+
+TASK [set up index.html for second web server] ************************************************************************************************************************************************
+changed: [tron@172.17.0.5]
+
+RUNNING HANDLER [restart apache2] *************************************************************************************************************************************************************
+changed: [tron@172.17.0.5]
+
+PLAY RECAP ************************************************************************************************************************************************************************************
+tron@172.17.0.4            : ok=7    changed=4    unreachable=0    failed=0   
+tron@172.17.0.5            : ok=7    changed=4    unreachable=0    failed=0   
+
+```
+
+... a few tests:
+
+``` 
+root@controller:/# telnet 172.17.0.5 80
+Trying 172.17.0.5...
+Connected to 172.17.0.5.
+Escape character is '^]'.
+
+GET /index.html
+<html><header><title>moar kittens</title></header><img src="https://78.media.tumblr.com/tumblr_m6kgukHNoL1r2h6ioo1_400.gif" alt="munchkin after espresso"></html>Connection closed by foreign host.
+root@controller:/# 
+root@controller:/# 
+root@controller:/# telnet 172.17.0.4 80
+Trying 172.17.0.4...
+Connected to 172.17.0.4.
+Escape character is '^]'.
+
+GET /index.html
+<html><header><title>kittens</title></header><img src="https://78.media.tumblr.com/48373ffbceec2d8f73299cf13d4e70bb/tumblr_nhi2o1ab9T1u77y9bo1_250.gif" alt="munchkin"</html>Connection closed by foreign host.
+root@controller:/# 
+
+```
+
+Wow, your browser should be now populated by evil munchkins! 
+
+
+
+
+
+
 
