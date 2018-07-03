@@ -3,10 +3,10 @@
 
 We will be dealing with four ssh containers:
 
-1. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/controller/Dockerfile">controller</a> -- ansible will be installed on this container, and it will deploy changes on all other containers
-2. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">loadbalancer</a>-- nginx load balancer is deployed on this container
-3. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web1</a>  -- apache2 is deployed on this container
-4. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web2</a>  -- apache 2 is deployed on this container
+1. controller -- ansible will be installed on this container, and it will deploy changes on all other containers
+2. loadbalancer -- nginx load balancer is deployed on this container
+3. web1  -- apache2 is deployed on this container
+4. web2  -- apache 2 is deployed on this container
 
 <i> For better vizualization purposes </i>
 
@@ -153,10 +153,11 @@ $
 
 
 <b> Ping'em all! </b>
+<i> what a mainstream thing to do...</i>
 
 Now that ssh is done, you need to add all the hosts under ```/etc/ansible/hosts``` under controller container, of course.
 
-
+```
 root@6dc25308106e:/# ansible all -m  "ping"
 tron@172.17.0.5 | SUCCESS => {
     "changed": false, 
@@ -174,9 +175,13 @@ tron@172.17.0.4 | SUCCESS => {
     "changed": false, 
     "ping": "pong"
 }
-
+```
 
 <b> Time to install services, apply changes...and all that jazz...</b> 
+
+On ansible container add the following files, for further installation and configuration:
+
+<a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/files/loadbalancer.yml">loadbalancer.yml</a> and <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/files/webserver.yml">webserver.yml</a>
 
 1) Install nginx on loadbalancer container (and you should see something similar):
 
@@ -343,5 +348,5 @@ Wow, your browser should be populated by evil munchkins gifs, by now!
 
 
 
-Fini!  
+
 
