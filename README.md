@@ -4,9 +4,9 @@
 We will be dealing with four ssh containers:
 
 1. controller -- ansible will be installed on this container, and it will deploy changes on all other containers
-2. loadbalancer -- nginx load balancer is deployed on this container
-3. web1  -- apache2 is deployed on this container
-4. web2  -- apache 2 is deployed on this container
+2. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">loadbalancer</a> -- nginx load balancer is deployed on this container
+3. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web1</a> -- apache2 is deployed on this container
+4. <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/web1/Dockerfile">web2</a> -- apache 2 is deployed on this container
 
 <i> For better vizualization purposes </i>
 
