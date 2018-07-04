@@ -4,7 +4,7 @@ Create a new folder, under which you add/edit the Dockerfile, then:
 
 Build:
 
-docker build -t . 
+docker build -t [name it] . 
 
 Run:
 
