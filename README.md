@@ -158,7 +158,7 @@ $
 Now that ssh is done, you need to add all the hosts under <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/files/hosts">/etc/ansible/hosts</a> under controller container, of course.
 
 ```
-root@6dc25308106e:/# ansible all -m  "ping"
+root@controller:/# ansible all -m  "ping"
 tron@172.17.0.5 | SUCCESS => {
     "changed": false, 
     "ping": "pong"
