@@ -1,0 +1,4 @@
+
+Just run " ansible-playbook  config.yml --ask-become-pass ", 
+and apache2 &same index.html (for now...) will be deployed on both web servers containers.
+
