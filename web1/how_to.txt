@@ -8,4 +8,4 @@ docker build -t [name it] .
 
 Run:
 
-docker run -ti [container ID] /bin/bash
+docker run -ti [how you named it] /bin/bash
