@@ -156,7 +156,7 @@ $
 <i> what a mainstream thing to do...</i>
 
 Now that ssh is done, you need to add all the hosts under <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/files/hosts">/etc/ansible/hosts</a> under controller container, of course.
-
+<i>Do check if python is installed on all containers (a simple "apt-get install python" will do the trick)</i>
 ```
 root@controller:/# ansible all -m  "ping"
 tron@172.17.0.5 | SUCCESS => {
