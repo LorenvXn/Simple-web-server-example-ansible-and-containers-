@@ -1,1 +1,11 @@
+ - name: configure apache2
+   sudo: yes
 
+   hosts: webserver
+
+   tasks:
+
+   - include: apache_tasks.yml
+
+   handlers:
+   - include: apache_handlers.yml
