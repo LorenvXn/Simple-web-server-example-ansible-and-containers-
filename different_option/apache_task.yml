@@ -1,0 +1,11 @@
+ - name: install apache
+   apt: name=apache2 state=present update_cache=yes
+
+ - name: deleted index.html
+   file: path=/var/www/html/index.html state=absent
+   notify: restart apache2
+
+ - name: set up index.html for first web server
+   copy: content="<html><header><title>kittens</title></header><img src=\"https://78.media.tumblr.com/48373ffbceec2d8f73299cf13d4e70bb/tumblr_nhi2o1ab9T1u77y9bo1_250.gif\" alt=\"munchkin\"</html>" dest=/v
+ar/www/html/index.html mode=0644
+   notify: restart apache2
