@@ -104,6 +104,12 @@ But first, do yourselves a favor, and restart ssh service on every container:
 
 ```/etc/init.d/ssh restart```
 
+Also, make sure you modified /etc/sudoers with the necessary privileges for your user:
+```
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+tron    ALL=(ALL:ALL) ALL
+```
 Controller container must have ssh access without password requirement on all other 3 containers (loadbalancer, web1, web2).
 
 Example how to offer access on  web1 [IP 172.17.0.4]  (do the same for web2, loadbalancer):
