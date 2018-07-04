@@ -1,0 +1,16 @@
+- hosts: webserver
+  become: yes
+  vars:
+    mysql_password: abc123
+  tasks:
+  - name: install mysql
+    apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
+    with_items:
+    - python-mysqldb
+    - mysql-server
+
+  - name: start mysql
+    shell: service mysql start
+      
+  - name: update mysql
+    mysql_user: name=root password={{ mysql_password }} priv=*.*:ALL state=present host=localhost
