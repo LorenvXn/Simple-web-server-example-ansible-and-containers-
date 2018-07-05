@@ -54,6 +54,15 @@ mysql> show grants for 'root'@'localhost';
 2 rows in set (0.00 sec)
 
 mysql> 
+mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
++---------------+--------------+
+| Variable_name | Value        |
++---------------+--------------+
+| hostname      |  web1        |
++---------------+--------------+
+1 row in set (0.00 sec)
+
+
 ```
 [on container web2] 
 
@@ -72,6 +81,83 @@ mysql> show grants for 'root'@'localhost';
 2 rows in set (0.00 sec)
 
 mysql> 
+mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
++---------------+--------------+
+| Variable_name | Value        |
++---------------+--------------+
+| hostname      |  web2        |
++---------------+--------------+
+1 row in set (0.00 sec)
 ```
 
+Hosts are allowed to Mysql:
 
+```
+mysql>use mysql;
+mysql> select Host from user;
++------------+
+| Host       |
++------------+
+| 172.17.0.2 |
+| 172.17.0.3 |
+| 172.17.0.4 |
+| 172.17.0.5 |
+| localhost  |
+| localhost  |
+| localhost  |
+| localhost  |
++------------+
+```
+Grant privileges is terrible these days, so I simply took the easiest approach:
+
+For example:
+
+```
+mysql> insert into user(Host, User, ssl_cipher, x509_issuer, x509_subject)  values ('172.17.0.2', 'root', 'non-null','non-null','non-null');
+Query OK, 1 row affected (0.00 sec)
+```
+..and so on
+
+
+<b> Loadbalancing with Nginx </b>
+
+
+Back to loadbalancer container 172.17.0.3, since we will make it loadbalancer for our web/mysql containers:
+
+Create a stream block by modifying file /etc/nginx/nginx.conf accordingly:
+
+```
+stream {
+      upstream dba {
+        server 172.17.0.4:3306;
+        server 172.17.0.5:3306;
+        zone tcp_mem 64k;
+        least_conn;
+    }
+ 
+    server {
+        listen 3306;
+        proxy_pass dba;
+        proxy_connect_timeout 1s;
+    }
+}
+
+http{
+  ...
+}
+include /etc/nginx/conf.d/*.conf;  <-- this include must be out of http block
+ 
+```
+
+Restart nginx:
+```
+/etc/init.d/nginx restart
+```
+
+...and check if anything listens on port 3306:
+
+```
+root@loadbalancer:/etc/nginx/conf.d# netstat -tenpula | grep :3306
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      0          665412      3093/nginx      
+rootloadbalancer:/etc/nginx/conf.d# 
+```
