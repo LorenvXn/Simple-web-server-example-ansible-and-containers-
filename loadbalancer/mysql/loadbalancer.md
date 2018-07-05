@@ -2,7 +2,7 @@
 
 <b>Next...</b>
 
-On the 2 web servers, let's install mysql, using the mysql.yml configuration file:
+On the 2 web servers, let's install mysql, using the <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/loadbalancer/mysql/mysql.yml">mysql.yml</a> configuration file:
 
 ```
 root@controller:~/mysql# ansible-playbook mysql.yml --ask-become-pass
