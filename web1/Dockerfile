@@ -12,4 +12,4 @@ RUN apt-get update &&\
  
 RUN /etc/init.d/ssh start
  
-EXPOSE 22
+EXPOSE 22 3306 80
