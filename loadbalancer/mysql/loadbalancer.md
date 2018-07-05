@@ -113,6 +113,7 @@ Grant privileges is terrible these days, so I simply took the easiest approach:
 For example:
 
 ```
+mysql> use mysql;
 mysql> insert into user(Host, User, ssl_cipher, x509_issuer, x509_subject)  values ('172.17.0.2', 'root', 'non-null','non-null','non-null');
 Query OK, 1 row affected (0.00 sec)
 ```
@@ -161,3 +162,5 @@ root@loadbalancer:/etc/nginx/conf.d# netstat -tenpula | grep :3306
 tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      0          665412      3093/nginx      
 rootloadbalancer:/etc/nginx/conf.d# 
 ```
+
+fini!
