@@ -128,7 +128,7 @@ bind-address=0.0.0.0
 <b> Loadbalancing with Nginx </b>
 
 
-Back to loadbalancer container 172.17.0.3, since we will make it loadbalancer for our mysql (the old web) containers:
+Back to loadbalancer container 172.17.0.3, since nginx is running on this container -  we will make it loadbalancer for our mysql (the old web) containers:
 
 Create a <a href="https://raw.githubusercontent.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/master/loadbalancer/mysql/balance_stream.conf">stream</a> block by modifying file /etc/nginx/nginx.conf accordingly:
 
@@ -166,7 +166,7 @@ Restart nginx:
 ```
 root@loadbalancer:/etc/nginx/conf.d# netstat -tenpula | grep :3306
 tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      0          665412      3093/nginx      
-rootloadbalancer:/etc/nginx/conf.d# 
+root@loadbalancer:/etc/nginx/conf.d# 
 ```
 
 fini!
