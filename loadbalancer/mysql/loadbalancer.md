@@ -67,7 +67,7 @@ mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
 [on container web2] 
 
 ```
-rootweb2:/# mysql -u root --password=abc123
+root@web2:/# mysql -u root --password=abc123
 
 [---------------snip---------------]
 
