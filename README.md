@@ -366,3 +366,5 @@ Wow, your browser should be populated by evil munchkins gifs, by now!
 
 
 Fini!
+
+Now, go and read more about loadbalancer &mysql...<a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/loadbalancer/mysql/loadbalancer.md"> The next simple example... </a>
