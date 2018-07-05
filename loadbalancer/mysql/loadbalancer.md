@@ -7,7 +7,6 @@ On the two web servers (172.17.4, and 172.17.5), let's install mysql, using the 
 ```
 root@controller:~/mysql# ansible-playbook mysql.yml --ask-become-pass
 SUDO password: 
- [WARNING]: Ignoring invalid attribute: sudo
 
 
 PLAY [webserver] ********************************************************************************************************************
