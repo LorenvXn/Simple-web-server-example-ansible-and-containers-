@@ -90,7 +90,7 @@ mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
 1 row in set (0.00 sec)
 ```
 
-Hosts are allowed to Mysql:
+Hosts that are allowed to Mysql:
 
 ```
 mysql>use mysql;
@@ -108,17 +108,22 @@ mysql> select Host from user;
 | localhost  |
 +------------+
 ```
-Grant privileges is terrible these days, so I simply took the easiest approach:
+Grant privilege is terrible these days, so I simply took the easiest approach:
 
 For example:
-
 ```
 mysql> use mysql;
 mysql> insert into user(Host, User, ssl_cipher, x509_issuer, x509_subject)  values ('172.17.0.2', 'root', 'non-null','non-null','non-null');
 Query OK, 1 row affected (0.00 sec)
 ```
-..and so on
 
+
+Modify /etc/mysql/my.cnf and make mysql available to all containers:
+
+```
+[mysqld]
+bind-address=0.0.0.0
+```
 
 <b> Loadbalancing with Nginx </b>
 
@@ -146,6 +151,7 @@ stream {
 http{
   ...
 }
+
 include /etc/nginx/conf.d/*.conf;  <-- this include must be out of http block
  
 ```
