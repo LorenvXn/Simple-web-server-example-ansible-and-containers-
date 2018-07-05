@@ -128,7 +128,7 @@ bind-address=0.0.0.0
 <b> Loadbalancing with Nginx </b>
 
 
-Back to loadbalancer container 172.17.0.3, since we will make it loadbalancer for our web/mysql containers:
+Back to loadbalancer container 172.17.0.3, since we will make it loadbalancer for our mysql (the old web) containers:
 
 Create a stream block by modifying file /etc/nginx/nginx.conf accordingly:
 
