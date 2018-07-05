@@ -11,4 +11,4 @@ RUN apt-get install software-properties-common -y  && \
     apt-get install sudo -y &&\
     apt-get install ansible -y
  
-EXPOSE 80 8080 22
+EXPOSE 80 8080 22 3306
