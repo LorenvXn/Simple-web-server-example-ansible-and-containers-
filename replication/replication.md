@@ -4,8 +4,18 @@
 <i><b>Mysql replication with ProxySQL</b></i>
 
 
-We will be using loadbalancer container (172.17.0.3), and webserver containers on which 
-we have installed MySQL (web1 - 172.17.0.4, and web2 - 172.17.0.5).
+We will be using loadbalancer container, and webserver containers on which 
+we have installed MySQL, web1 &web2:
+
+```
+root@controller:~#  ansible loadbalancer --list-hosts
+  hosts (1):
+    tron@172.17.0.3
+root@controller:~#  ansible webserver --list-hosts
+  hosts (2):
+    tron@172.17.0.4
+    tron@172.17.0.5
+```
 
 
 ProxySQL will be installed on loadbalancer, web1 will be the master, and web2 the slave.
