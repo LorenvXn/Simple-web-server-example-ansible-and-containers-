@@ -11,11 +11,11 @@ we have installed MySQL (web1 - 172.17.0.4, and web2 - 172.17.0.5).
 ProxySQL will be installed on loadbalancer, web1 will be the master, and web2 the slave.
 
 
-<b>1) ProxySQL on loadbalancer (172.17.0.2) container </b>
+<b>1) ProxySQL on loadbalancer (172.17.0.3) container </b>
 
 <i> MySQL must be installed on this one as well...</i>
 
-Ansible playbook for ProxySQL and Mysql configuration on 172.17.0.2:
+Ansible playbook for ProxySQL and Mysql configuration on 172.17.0.3:
 
 ```
  - hosts: loadbalancer
@@ -53,7 +53,9 @@ Ansible playbook for ProxySQL and Mysql configuration on 172.17.0.2:
         state: started
 
     - name: root user mysql
-      command: mysql -e "alter user root@localhost identified by 'mysql_password';"
+      command: mysql -e "alter user root@localhost identified by '{{ mysql_password }}';"
+      
+    - name: grant privileges
       command: mysql -u root -e "grant all on *.* to root@localhost;" --password={{ mysql_password }}
 
 ```
@@ -87,6 +89,9 @@ TASK [Start mysql] *************************************************************
 ok: [tron@172.17.0.3]
 
 TASK [update mysql] *****************************************************************************************************************
+changed: [tron@172.17.0.3]
+
+TASK [grant privileges] *************************************************************************************************************
 changed: [tron@172.17.0.3]
 
 PLAY RECAP **************************************************************************************************************************
