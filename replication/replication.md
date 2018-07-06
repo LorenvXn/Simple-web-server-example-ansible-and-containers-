@@ -93,7 +93,7 @@ PLAY RECAP *********************************************************************
 tron@172.17.0.3            : ok=8    changed=2    unreachable=0    failed=0   
 ```
 
-Check if everything ok on container "loadbalancer"
+Check if everything is ok on container "loadbalancer"
 
 ```
 root@loadbalancer:/tmp# lsof -i :6032
@@ -105,4 +105,7 @@ u_str  LISTEN     0      80     /var/run/mysqld/mysqld.sock 630510              
 tcp    LISTEN     0      80      *:mysql                 *:*                    
 ```
 
+<b><i>Master-slave replication</b></i>
+
+... to be continued
 
