@@ -169,3 +169,81 @@ tron@172.17.0.5            : ok=3    changed=2    unreachable=0    failed=0
 
 
 ```
+
+2). Connect as ProxySQL admin and start configuration of container 172.17.0.3 (loadbalancer), by using following 
+Playbook:
+
+```
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+
+   tasks:
+    - name: set master
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "insert into mysql_servers(hostgroup_id,hostname,port) VALUES (0,'172.17.0.4',3306);" --password={{ proxy_passwd }}
+
+    - name: set slave
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "insert into mysql_servers(hostgroup_id,hostname,port) VALUES (1,'172.17.0.5',3306);" --password={{ proxy_passwd }}
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
+
+```
+Play...
+```
+root@controller:~# ansible-playbook config.yml --ask-become-pass
+SUDO password: 
+
+PLAY [loadbalancer] ***************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************
+ok: [tron@172.17.0.3]
+
+TASK [set master] *****************************************************************************************************************
+changed: [tron@172.17.0.3]
+
+TASK [set slave] ******************************************************************************************************************
+changed: [tron@172.17.0.3]
+
+TASK [load mysql servers] *********************************************************************************************************
+changed: [tron@172.17.0.3]
+
+TASK [save configuration] *********************************************************************************************************
+changed: [tron@172.17.0.3]
+
+PLAY RECAP ************************************************************************************************************************
+tron@172.17.0.3            : ok=5    changed=4    unreachable=0    failed=0   
+
+```
+
+...and do a check:
+
+```
+root@controller:/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "SELECT hostgroup_id,hostname,port,status,weight FROM mysql_servers;" --password=admin
+mysql: [Warning] Using a password on the command line interface can be insecure.
++--------------+------------+------+--------+--------+
+| hostgroup_id | hostname   | port | status | weight |
++--------------+------------+------+--------+--------+
+| 0            | 172.17.0.4 | 3306 | ONLINE | 1      |
+| 1            | 172.17.0.5 | 3306 | ONLINE | 1      |
++--------------+------------+------+--------+--------+
+root@controller:/tmp# 
+root@controller:/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "insert into mysql_replication_hostgroups VALUES (0,1,'whoaa');;" --password=admin
+mysql: [Warning] Using a password on the command line interface can be insecure.
+root@controller:/tmp#
+root@controller::/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "select *  from mysql_replication_hostgroups;" --password=adminmysql: [Warning] Using a password on the command line interface can be insecure.
++------------------+------------------+---------+
+| writer_hostgroup | reader_hostgroup | comment |
++------------------+------------------+---------+
+| 0                | 1                | whoaa   |
++------------------+------------------+---------+
+```
+
+```
+
+
