@@ -118,5 +118,54 @@ tcp    LISTEN     0      80      *:mysql                 *:*
 
 <b><i>Master-slave replication</b></i>
 
-... to be continued
+1. Create an application user, and a monitoring user on all three containers, using below Playbook:
+ <i> ( same mysql password for every user...)</i> :
+  
+ ```
+  - hosts: loadbalancer, webserver
+   become: true
+   vars:
+     packages: proxysql_1.4.9-ubuntu16_amd64.deb
+     mysql_password: abc123
+     mysql_user: root
+     sysbench: tronsysbench
+     monitor: tronmonitor
 
+   tasks:
+    - name: create user sysbench
+      command: mysql -u {{ mysql_user }} -e "create user {{ sysbench }} identified by '{{mysql_password}}';" --password={{ mysql_pass
+word}}
+    - name: grant privilege to sysbench
+      command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ sysbench }}'@'172.17.0.%' identified by '{{ mysql_pas
+sword }}';" --password={{ mysql_password}}
+```
+  
+...and Play it:
+```
+root@controller:~# ansible-playbook master_slave.yml --ask-become-pass
+SUDO password: 
+
+PLAY [loadbalancer, webserver] ******************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************
+ok: [tron@172.17.0.5]
+ok: [tron@172.17.0.4]
+ok: [tron@172.17.0.3]
+
+TASK [create user sysbench] *********************************************************************************************************
+changed: [tron@172.17.0.3]
+changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
+
+TASK [grant privilege to sysbench] **************************************************************************************************
+changed: [tron@172.17.0.3]
+changed: [tron@172.17.0.5]
+changed: [tron@172.17.0.4]
+
+PLAY RECAP **************************************************************************************************************************
+tron@172.17.0.3            : ok=3    changed=2    unreachable=0    failed=0   
+tron@172.17.0.4            : ok=3    changed=2    unreachable=0    failed=0   
+tron@172.17.0.5            : ok=3    changed=2    unreachable=0    failed=0   
+
+
+```
