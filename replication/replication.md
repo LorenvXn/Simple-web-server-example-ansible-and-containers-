@@ -402,7 +402,7 @@ Chceking on containers:
 root@loadbalancer:/tmp# mysql -u tronsysbench -pabc123 -h 172.17.0.5 -P 3306 -e "create database ahaaa;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
 root@loadbalancer:/tmp#
-root@loadbalancer:/tmp# mysql -u tronsysbench -psysbench -h 172.17.0.5 -P 3306 -e "show databases;"
+root@loadbalancer:/tmp# mysql -u tronsysbench -pabc123 -h 172.17.0.5 -P 3306 -e "show databases;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
 +--------------------+
 | Database           |
