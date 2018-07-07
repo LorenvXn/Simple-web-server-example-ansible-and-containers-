@@ -397,7 +397,25 @@ Enter password:
 | 172.17.0.5 | 3306 | 1530929809736067 | 186                  | NULL       |
 +------------+------+------------------+----------------------+------------+```
 ```
+Chceking on containers:
+```
+root@loadbalancer:/tmp# mysql -u tronsysbench -pabc123 -h 172.17.0.5 -P 3306 -e "create database ahaaa;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+root@loadbalancer:/tmp#
+root@loadbalancer:/tmp# mysql -u sysbench -psysbench -h 172.17.0.5 -P 3306 -e "show databases;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ahaaa              |
+| mysql              |
+| performance_schema |
+| pfehehehe          |
+| sys                |
++--------------------+
 
+```
 <i> ... in progress </i>
 
 
