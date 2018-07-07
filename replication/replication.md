@@ -122,7 +122,8 @@ tcp    LISTEN     0      80      *:mysql                 *:*
  <i> ( same mysql password for every user...)</i> :
   
  ```
-  - hosts: loadbalancer, webserver
+root@controller:~# more mass.yml 
+ - hosts: loadbalancer, webserver
    become: true
    vars:
      packages: proxysql_1.4.9-ubuntu16_amd64.deb
@@ -133,11 +134,17 @@ tcp    LISTEN     0      80      *:mysql                 *:*
 
    tasks:
     - name: create user sysbench
-      command: mysql -u {{ mysql_user }} -e "create user {{ sysbench }} identified by '{{mysql_password}}';" --password={{ mysql_pass
-word}}
+      command: mysql -u {{ mysql_user }} -e "create user {{ sysbench }} identified by '{{mysql_password}}';" --password={{ mysql_password}}
+
     - name: grant privilege to sysbench
-      command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ sysbench }}'@'172.17.0.%' identified by '{{ mysql_pas
-sword }}';" --password={{ mysql_password}}
+      command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ sysbench }}'@'172.17.0.%' identified by '{{ mysql_password }}';" --password={{ mysql_password}}
+
+    - name: create user sysbench
+      command: mysql -u {{ mysql_user }} -e "create user {{ monitor }} identified by '{{mysql_password}}';" --password={{ mysql_password}}
+
+    - name: grant privilege to sysbench
+      command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ monitor  }}'@'172.17.0.%' identified by '{{ mysql_password }}';" --password={{ mysql_password}}
+
 ```
   
 ...and Play it:
@@ -145,12 +152,14 @@ sword }}';" --password={{ mysql_password}}
 root@controller:~# ansible-playbook master_slave.yml --ask-become-pass
 SUDO password: 
 
+SUDO password: 
+
 PLAY [loadbalancer, webserver] ******************************************************************************************************
 
 TASK [Gathering Facts] **************************************************************************************************************
-ok: [tron@172.17.0.5]
-ok: [tron@172.17.0.4]
 ok: [tron@172.17.0.3]
+ok: [tron@172.17.0.4]
+ok: [tron@172.17.0.5]
 
 TASK [create user sysbench] *********************************************************************************************************
 changed: [tron@172.17.0.3]
@@ -159,13 +168,24 @@ changed: [tron@172.17.0.5]
 
 TASK [grant privilege to sysbench] **************************************************************************************************
 changed: [tron@172.17.0.3]
-changed: [tron@172.17.0.5]
 changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
+
+TASK [create user monitor] *********************************************************************************************************
+changed: [tron@172.17.0.3]
+changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
+
+TASK [grant privilege to monitor] **************************************************************************************************
+changed: [tron@172.17.0.3]
+changed: [tron@172.17.0.4]
+changed: [tron@172.17.0.5]
 
 PLAY RECAP **************************************************************************************************************************
-tron@172.17.0.3            : ok=3    changed=2    unreachable=0    failed=0   
-tron@172.17.0.4            : ok=3    changed=2    unreachable=0    failed=0   
-tron@172.17.0.5            : ok=3    changed=2    unreachable=0    failed=0   
+tron@172.17.0.3            : ok=5    changed=4    unreachable=0    failed=0   
+tron@172.17.0.4            : ok=5    changed=4    unreachable=0    failed=0   
+tron@172.17.0.5            : ok=5    changed=4    unreachable=0    failed=0   
+
 
 
 ```
@@ -322,6 +342,49 @@ e = 'mysql-monitor_ping_timeout';"  --password={{ proxy_passwd }}
       command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
 
 ```
+
+<b> Configure query rules </b>
+```
+root@e647cc8515dd:~# more queries.yml 
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+     sysbench: tronsysbench
+     monitor: tronmonitor
+
+   tasks:
+    - name: monitor user setup
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "INSERT INTO mysql_query_rules (active, match_digest, destination_
+hostgroup, apply) VALUES (1, '^SELECT.*', 1, 0);"  --password={{ proxy_passwd }}
+     
+    - name: configure interval variable
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "INSERT INTO mysql_query_rules (active, match_digest, destination_
+hostgroup, apply) VALUES (1, '^SELECT.*FOR UPDATE', 0, 1);"  --password={{ proxy_passwd }}
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
+
+```
+
+Implement checking:
+
+
+```
+root@loadbalancerr:/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "SELECT rule_id, match_digest,destination_hostgroup hg_id, apply FROM mysql_query_rules WHERE active=1;" --password=admin
+mysql: [Warning] Using a password on the command line interface can be insecure.
++---------+---------------------+-------+-------+
+| rule_id | match_digest        | hg_id | apply |
++---------+---------------------+-------+-------+
+| 1       | ^SELECT.*           | 1     | 0     |
+| 2       | ^SELECT.*FOR UPDATE | 0     | 1     |
++---------+---------------------+-------+-------+
+```
+
 
 
 <i> ... in progress </i>
