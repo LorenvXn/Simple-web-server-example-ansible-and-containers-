@@ -243,6 +243,54 @@ root@controller::/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "select *  from my
 | 0                | 1                | whoaa   |
 +------------------+------------------+---------+
 ```
+<b> Configure users </b>
+
+```
+root@controller:~# more user_conf.yml 
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+     sysbench: tronsysbench
+     monitor: tronmonitor
+
+   tasks:
+    - name: monitor user setup
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "update global_variables set variable_value='monitor' where variable
+_name='mysql-monitor_password';"  --password={{ proxy_passwd }}
+     
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
+
+    - name: configure sysbench
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "insert into mysql_users(username,password,default_hostgroup) values 
+(\"{{ sysbench }}\",\"{{ sysbench }}\",1);" --password={{ proxy_passwd }} 
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
+
+```
+
+Perform checking on loadbalancer:
+
+```
+root@loadbalancer:/tmp# mysql -u admin  -h 127.0.0.1 -P6032 -e "select username,password,active,default_hostgroup,default_schema,max_connections,max_connections FROM mysql_users; " --password=admin
+mysql: [Warning] Using a password on the command line interface can be insecure.
++--------------+--------------+--------+-------------------+----------------+-----------------+-----------------+
+| username     | password     | active | default_hostgroup | default_schema | max_connections | max_connections |
++--------------+--------------+--------+-------------------+----------------+-----------------+-----------------+
+| tronsysbench | tronsysbench | 1      | 1                 | NULL           | 10000           | 10000           |
++--------------+--------------+--------+-------------------+----------------+-----------------+-----------------+
+root@loadbalancer:/tmp# 
+```
+
 
 
 <i> ... in progress </i>
