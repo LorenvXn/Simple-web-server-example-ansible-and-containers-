@@ -385,7 +385,18 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +---------+---------------------+-------+-------+
 ```
 
-
+<b> Check connection </b>
+```
+root@loadbalancer:/tmp# mysql -u admin -p -h 127.0.0.1 -P6032 -e "Select * from monitor.mysql_server_ping_log order by time_start_us desc limit 3;"
+Enter password: 
++------------+------+------------------+----------------------+------------+
+| hostname   | port | time_start_us    | ping_success_time_us | ping_error |
++------------+------+------------------+----------------------+------------+
+| 172.17.0.5 | 3306 | 1530929811738058 | 424                  | NULL       |
+| 172.17.0.4 | 3306 | 1530929811735853 | 733                  | NULL       |
+| 172.17.0.5 | 3306 | 1530929809736067 | 186                  | NULL       |
++------------+------+------------------+----------------------+------------+```
+```
 
 <i> ... in progress </i>
 
