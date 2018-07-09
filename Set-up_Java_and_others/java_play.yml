@@ -1,0 +1,17 @@
+ - hosts: webserver
+   become: true
+   vars:
+     packages: jdk-8u171-linux-x64.tar.gz
+     license: accept-securebackup-cookie
+     link: http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz
+     
+   tasks:
+
+    - name: Download java
+      command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense={{license}}" {{ link }}  -P /opt/'
+
+    - name: Extract java
+      unarchive: src=/opt/{{ packages }}  dest=/opt/ copy=no
+   
+    - name: Java home
+      lineinfile: dest=/etc/environment line="export JAVA_HOME=/opt/jdk1.8.0_171" 
