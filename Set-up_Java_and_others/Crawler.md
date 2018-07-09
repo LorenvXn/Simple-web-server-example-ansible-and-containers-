@@ -162,7 +162,7 @@ http://cats.wikia.com/wiki/Munchkin_(Breed)?oldid=12127
 3.5) Check the tablespace:
 
 ```
-root@0afdb76a8b6e:/home/munchkin# mysql -uroot -e "use Kittens; select * from Links;" -p 
+root@web1:/home/munchkin# mysql -uroot -e "use Kittens; select * from Links;" -p 
 Enter password: 
 +--------+---------------------------------------------------------------------------------------------------+---------------------+
 | LinkID | URL                                                                                               | track               |
