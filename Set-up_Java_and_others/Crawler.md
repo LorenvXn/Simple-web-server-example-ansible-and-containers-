@@ -87,7 +87,7 @@ Enter password:
 +--------+---------+------+-----+---------+----------------+
 root@web1:/# 
 ```
-Change table Links to keep evidence at what hour/date/time we found a munchkin kitten link:
+3.2) Change table Links to keep evidence at what hour/date/time we found a munchkin kitten link:
 ```
 mysql> use Kittens;
 Reading table information for completion of table and column names
@@ -114,3 +114,71 @@ mysql> describe Links;
 
 mysql> 
 ```
+
+<i> Much better... </i> 
+
+
+3.3) Find the code & dependencies under <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/tree/master/Crawler" >Crawler</a> folder.
+
+```
+root@web1:/home/munchkin# tree
+.
+|-- pom.xml
+|-- src
+    `-- main
+      `-- java
+            `-- com
+                |-- Main.java
+                `-- data.java
+
+```
+3.4) Build:
+```
+root@web1:/home/munchkin# clean install
+root@web1:/home/munchkin# mvn exec:java -Dexec.mainClass="com.mymunchkin.app.Main"
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.mymunchkin.app:my-munchkin >-------------------
+[INFO] Building my-munchkin 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.6.0:java (default-cli) @ my-munchkin ---
+built
+http://cats.wikia.com
+https://www.wikia.com/signin?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29
+https://www.wikia.com/register?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29
+http://cats.wikia.com/wiki/Main_Page
+http://cats.wikia.com/wiki/Special:WikiActivity
+http://cats.wikia.com/wiki/Special:Random
+http://cats.wikia.com/wiki/Special:Videos
+http://cats.wikia.com/wiki/Special:Images
+http://cats.wikia.com/wiki/Special:Forum
+http://ja.cats.wikia.com/wiki/
+http://ru.cats.wikia.com/wiki/
+http://cats.wikia.com/wiki/Munchkin_(Breed)?oldid=12127
+```
+3.5) Check the tablespace:
+
+```
+root@0afdb76a8b6e:/home/munchkin# mysql -uroot -e "use Kittens; select * from Links;" -p 
+Enter password: 
++--------+---------------------------------------------------------------------------------------------------+---------------------+
+| LinkID | URL                                                                                               | track               |
++--------+---------------------------------------------------------------------------------------------------+---------------------+
+|      1 | http://cats.wikia.com                                                                             | 2018-07-09 15:46:18 |
+|      2 | https://www.wikia.com/signin?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29   | 2018-07-09 15:46:19 |
+|      3 | https://www.wikia.com/register?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29 | 2018-07-09 15:46:20 |
+|      4 | http://cats.wikia.com/wiki/Main_Page                                                              | 2018-07-09 15:46:20 |
+|      5 | http://cats.wikia.com/wiki/Special:WikiActivity                                                   | 2018-07-09 15:46:20 |
+|      6 | http://cats.wikia.com/wiki/Special:Random                                                         | 2018-07-09 15:46:20 |
+|      7 | http://cats.wikia.com/wiki/Special:Videos                                                         | 2018-07-09 15:46:20 |
+|      8 | http://cats.wikia.com/wiki/Special:Images                                                         | 2018-07-09 15:46:20 |
+|      9 | http://cats.wikia.com/wiki/Special:Forum                                                          | 2018-07-09 15:46:20 |
+|     10 | http://ja.cats.wikia.com/wiki/                                                                    | 2018-07-09 15:46:20 |
+|     11 | http://ru.cats.wikia.com/wiki/                                                                    | 2018-07-09 15:46:20 |
+|     12 | http://cats.wikia.com/wiki/Munchkin_(Breed)?oldid=12127                                           | 2018-07-09 15:46:20 |
++--------+---------------------------------------------------------------------------------------------------+---------------------+
+
+```
+
+Fini!
