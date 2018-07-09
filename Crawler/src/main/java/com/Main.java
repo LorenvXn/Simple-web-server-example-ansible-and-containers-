@@ -24,7 +24,7 @@ public class Main
 	public static void processPage(String URL) throws SQLException, IOException
   {
 	
-		String sql = "select * from Record where URL = '"+URL+"'";
+		String sql = "select * from Links where URL = '"+URL+"'";
     
 		ResultSet rs = db.runSql(sql);
 		if(!rs.next())
