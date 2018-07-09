@@ -1,0 +1,36 @@
+ - hosts: loadbalancer
+   become: true
+   vars:
+     packages: proxysql_1.4.9-ubuntu16_amd64.deb
+     mysql_password: abc123
+     
+   tasks:
+    - name: Download proxysql
+      get_url:
+        url: https://github.com/sysown/proxysql/releases/download/v1.4.9/{{ packages }}
+        dest: /tmp
+
+    - name: Install proxysql
+      command: dpkg -i /tmp/{{ packages }}
+
+    - name: Start proxysql
+      service:
+        name: proxysql
+        state: started
+
+    - name: install mysql
+      apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
+      with_items:
+      - python-mysqldb
+      - mysql-server
+
+    - name: start mysql
+      service:
+        name: mysql
+        state: started
+
+    - name: root user mysql
+      command: mysql -e "alter user root@localhost identified by '{{ mysql_password }}';"
+      
+    - name: grant privileges
+      command: mysql -u root -e "grant all on *.* to root@localhost;" --password={{ mysql_password }}
