@@ -1,0 +1,2 @@
+For more details on this subject, 
+check "Java for Data Science", by Richard M. Reese &Jennifer L. Reese
