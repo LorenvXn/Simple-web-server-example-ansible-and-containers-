@@ -1,0 +1,22 @@
+ - hosts: webserver
+   become: true
+   vars:
+     packages: apache-maven-3.5.4-bin.tar.gz
+     link:  http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+     
+   tasks:
+
+    - name: Download maven
+      command: 'wget {{ link }}  -P /usr/local/'
+
+    - name: Extract maven
+      unarchive: src=/usr/local/{{ packages }}  dest=/usr/local copy=no
+
+    - name: Extract maven II
+      command: 'ln -s /usr/local/apache-maven-3.5.4 /usr/local/maven'
+   
+    - name: Maven home
+      lineinfile: dest=/etc/environment line="export M2_HOME=/usr/local/maven" 
+
+    - name: Maven home II
+      lineinfile: dest=/etc/environment line="export PATH=${M2_HOME}/bin:${PATH}"
