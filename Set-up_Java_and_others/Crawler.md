@@ -2,11 +2,11 @@
 <b> Next... </b>
 <i> Crawler testing as root dba user</i>
 
-1. Install & set-up Java environment on web1 and web2 containers, using <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/java_play.yml">java_play.yml</a> to install java:
+<b> 1. Install & set-up Java environment </b> on web1 and web2 containers, using <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/java_play.yml">java_play.yml</a> to install java:
 
 
 
-2. Install & set-up Maven environment on web1 and web2 containers, using <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/maven_play.yml">maven_play.yml</a>.
+<b> 2. Install & set-up Maven environment </b> on web1 and web2 containers, using <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/maven_play.yml">maven_play.yml</a>.
 
 [output for maven installation]
 ```
@@ -67,7 +67,8 @@ OS name: "linux", version: "4.15.0-24-generic", arch: "amd64", family: "unix"
 
 ```
 
-3. Gather munchkin links with Java crawler (testing phase with root user)
+
+<b> 3. Gather munchkin links with Java crawler (testing phase with root user) </b>
 
 3.1) Create database Kittens and table Links for testing crawler:
 
