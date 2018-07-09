@@ -347,7 +347,7 @@ e = 'mysql-monitor_ping_timeout';"  --password={{ proxy_passwd }}
 
 <b> Configure query rules </b>
 ```
-root@e647cc8515dd:~# more queries.yml 
+root@controller:~# more queries.yml 
  - hosts: loadbalancer
    become: true
    vars:
