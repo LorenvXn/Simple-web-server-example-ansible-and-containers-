@@ -1,0 +1,2 @@
+For more details on ProxySQL, 
+check tutorials at: http://proxysql.blogspot.com/2015/09/proxysql-tutorial-setup-in-mysql.html 
