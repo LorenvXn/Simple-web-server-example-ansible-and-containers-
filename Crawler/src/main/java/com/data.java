@@ -16,7 +16,7 @@ public class data {
                         String url = "jdbc:mysql://localhost:3306/Kittens"; 
                         
                         conn = DriverManager.getConnection(url, "root", "abc123");
-                        System.out.println("conn built");
+                        System.out.println("built");
                      } 
                      catch (SQLException e) 
                      {
