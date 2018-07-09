@@ -1,0 +1,21 @@
+- hosts: loadbalancer, webserver
+  become: true
+  vars:
+    packages: proxysql_1.4.9-ubuntu16_amd64.deb
+    mysql_password: abc123
+    mysql_user: root
+    sysbench: tronsysbench
+    monitor: tronmonitor
+
+  tasks:
+   - name: create user sysbench
+     command: mysql -u {{ mysql_user }} -e "create user {{ sysbench }} identified by '{{mysql_password}}';" --password={{ mysql_password}}
+
+   - name: grant privilege to sysbench
+     command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ sysbench }}'@'172.17.0.%' identified by '{{ mysql_password }}';" --password={{ mysql_password}}
+
+   - name: create user sysbench
+     command: mysql -u {{ mysql_user }} -e "create user {{ monitor }} identified by '{{mysql_password}}';" --password={{ mysql_password}}
+
+   - name: grant privilege to sysbench
+     command: mysql -u {{ mysql_user }} -e "grant all privileges on *.* to '{{ monitor  }}'@'172.17.0.%' identified by '{{ mysql_password }}';" --password={{ mysql_password}}
