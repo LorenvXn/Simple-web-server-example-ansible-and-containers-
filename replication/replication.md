@@ -1,6 +1,6 @@
 
 <b> Next... </b>
-<i> ... in progress... </i>
+
 
 <i><b>Mysql replication with ProxySQL</b></i>
 
@@ -420,4 +420,4 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 ```
 <i> ... in progress </i>
 
-
+For now, check how to test <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/Crawler.md">the web crawler as root dba user</a>
