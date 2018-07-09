@@ -169,4 +169,5 @@ root@loadbalancer:/etc/nginx/conf.d#
 ```
 
 fini!
-<i>...for now </i>
+
+Now, go to the <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/replication/replication.md"> The next simple example for Mysql replication with ProxySQL </a>
