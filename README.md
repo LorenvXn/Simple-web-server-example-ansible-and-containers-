@@ -1,8 +1,8 @@
-# Simple web server example, using ansible &containers
+# Simple examples, using ansible &containers
 
 <b> List of contents </b>
 
-[1.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/README.md" > Environment Set-up (and main page)  </a>
+[1.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/README.md" > Environment Set-up for web servers (and main page)  </a>
 
 [2.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/loadbalancer/mysql/loadbalancer.md"> Nginx loadbalancer </a>
 
@@ -12,7 +12,7 @@
 
 <br>
 
-<b> Environment Set-up </b>
+<b> Environment Set-up for web servers </b>
 
 We will be dealing with four ssh containers:
 
