@@ -1,5 +1,18 @@
 # Simple web server example, using ansible &containers
 
+<b> List of contents </b>
+
+[1.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/README.md" > Environment Set-up (and main page)  </a>
+
+[2.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/loadbalancer/mysql/loadbalancer.md"> Nginx loadbalancer </a>
+
+[3.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/replication/replication.md">MySQL Replication with ProxySQL </a>
+
+[4.] <a href=“ https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Set-up_Java_and_others/Crawler.md “>Testing Java Web Crawler (root dba user) </a>
+
+<br>
+
+<b> Environment Set-up </b>
 
 We will be dealing with four ssh containers:
 
