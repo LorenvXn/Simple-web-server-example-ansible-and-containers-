@@ -34,7 +34,8 @@ Ansible playbook for ProxySQL and Mysql configuration on 172.17.0.3:
    vars:
      packages: proxysql_1.4.9-ubuntu16_amd64.deb
      mysql_password: abc123
-
+     
+   tasks:
     - name: Download proxysql
       get_url:
         url: https://github.com/sysown/proxysql/releases/download/v1.4.9/{{ packages }}
