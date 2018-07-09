@@ -397,7 +397,7 @@ Enter password:
 | 172.17.0.5 | 3306 | 1530929809736067 | 186                  | NULL       |
 +------------+------+------------------+----------------------+------------+```
 ```
-Chceking on containers:
+Checking on containers:
 ```
 root@loadbalancer:/tmp# mysql -u tronsysbench -pabc123 -h 172.17.0.5 -P 3306 -e "create database ahaaa;"
 mysql: [Warning] Using a password on the command line interface can be insecure.
