@@ -1,0 +1,28 @@
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+     sysbench: tronsysbench
+     monitor: tronmonitor
+
+   tasks:
+    - name: monitor user setup
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e " update global_variables set variable_value=2000 where variable_nam
+e IN ('mysql-monitor_connect_interval','mysql-monitor_ping_interval','mysql-monitor_read_only_interval');"  --password={{ proxy_passw
+d }}
+     
+    - name: configure interval variable
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "update global_variables set variable_value = 1000 where variable_na
+me = 'mysql-monitor_connect_timeout';"  --password={{ proxy_passwd }}
+
+    - name: configure ping timeout
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "update global_variables set variable_value = 500 where variable_nam
+e = 'mysql-monitor_ping_timeout';"  --password={{ proxy_passwd }}
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
+
