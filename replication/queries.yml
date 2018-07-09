@@ -1,0 +1,22 @@
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+     sysbench: tronsysbench
+     monitor: tronmonitor
+
+   tasks:
+    - name: monitor user setup
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "INSERT INTO mysql_query_rules (active, match_digest, destination_
+hostgroup, apply) VALUES (1, '^SELECT.*', 1, 0);"  --password={{ proxy_passwd }}
+     
+    - name: configure interval variable
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "INSERT INTO mysql_query_rules (active, match_digest, destination_
+hostgroup, apply) VALUES (1, '^SELECT.*FOR UPDATE', 0, 1);"  --password={{ proxy_passwd }}
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
