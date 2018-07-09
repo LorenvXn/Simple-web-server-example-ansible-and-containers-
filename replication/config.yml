@@ -1,0 +1,18 @@
+ - hosts: loadbalancer
+   become: true
+   vars:
+     proxy_passwd: admin
+     proxy_user: admin
+
+   tasks:
+    - name: set master
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "insert into mysql_servers(hostgroup_id,hostname,port) VALUES (0,'172.17.0.4',3306);" --password={{ proxy_passwd }}
+
+    - name: set slave
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "insert into mysql_servers(hostgroup_id,hostname,port) VALUES (1,'172.17.0.5',3306);" --password={{ proxy_passwd }}
+
+    - name: load mysql servers
+      command: mysql -u {{ proxy_user }}  -h 127.0.0.1 -P6032 -e "load mysql servers to runtime;"  --password={{ proxy_passwd }}
+
+    - name: save configuration
+      command: mysql -u {{ proxy_user }} -h 127.0.0.1 -P6032 -e "save mysql servers to disk;" --password={{ proxy_passwd }}
