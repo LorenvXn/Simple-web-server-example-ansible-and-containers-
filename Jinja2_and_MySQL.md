@@ -99,7 +99,8 @@ eed%29'</a></li>
 </html>
 ```
 
-You can now access the munchkin links from container 172.17.0.5 (don't forget to check if apache2 is up and running!):
+You can now access the munchkin links from container 172.17.0.5 (don't forget to check if apache2 is up and running! 
+remember that 172.17.0.4 and 172.17.0.5 were web containers, with apache2 on them):
 
 ![ScreenShot](https://github.com/Satanette/test/blob/master/munchy.png)
 
