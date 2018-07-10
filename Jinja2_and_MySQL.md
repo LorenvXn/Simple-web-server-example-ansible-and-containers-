@@ -61,10 +61,10 @@ root@web:/home/ji# tree
 Our links from original output looks like this:
 
 ```
-[ ... sni ... ]
+[ ... snip ... ]
 <li><a href="['http://cats.wikia.com/wiki/Main_Page']">['http://cats.wikia.com/wiki/Main_Page']</a></li>
 <li><a href="['http://cats.wikia.com/wiki/Special:WikiActivity']">['http://cats.wikia.com/wiki/Special:WikiActivity']</a></li>
-[ ... sni ... ]
+[ ... snip ... ]
 ```
 
 It is obviously we won't be able to access those links from a browser.
