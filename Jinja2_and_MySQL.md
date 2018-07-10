@@ -16,8 +16,18 @@ root@web:/home/ji# tree
 `-- ~
 ```
 
+The code is run on the container on which we have already created the database Kittens, &tablespace Links:
 
-Our templates/index.html looks as below:
+```
+[ ... snip ... ]
+dba = MySQLdb.connect(host="localhost", 
+                      user="root", 
+                      passwd="abc123", 
+                      db="Kittens")     
+[ ... snip ... ]
+```
+
+Our <b>templates/index.html</b> looks as below:
 
 ```
 <!DOCTYPE html>
