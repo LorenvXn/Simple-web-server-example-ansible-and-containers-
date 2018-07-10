@@ -124,6 +124,46 @@ Modify /etc/mysql/my.cnf and make mysql available to all containers:
 bind-address=0.0.0.0
 ```
 
+<i><b>Possible fix (for this tutorial, at least)</i></b>
+
+```
+
+mysql> 
+mysql> SELECT host,user,Grant_priv,Super_priv FROM mysql.user where user="root";
++--------------+------+------------+------------+
+| host         | user | Grant_priv | Super_priv |
++--------------+------+------------+------------+
+| localhost    | root | N          | Y          |
+| web1         | root | Y          | Y          |
+| 172.17.0.2   | root | N          | N          |
+| 172.17.0.3   | root | N          | N          |
+| 172.17.0.4   | root | N          | N          |
+| 172.17.0.5   | root | N          | N          |
++--------------+------+------------+------------+
+6 rows in set (0.00 sec)
+
+
+mysql> UPDATE mysql.user SET Grant_priv='Y', Super_priv='Y' WHERE User='root';
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 6  Changed: 5  Warnings: 0
+
+mysql> SELECT host,user,Grant_priv,Super_priv FROM mysql.user where user="root";
++--------------+------+------------+------------+
+| host         | user | Grant_priv | Super_priv |
++--------------+------+------------+------------+
+| localhost    | root | Y          | Y          |
+| web1         | root | Y          | Y          |
+| 172.17.0.2   | root | Y          | Y          |
+| 172.17.0.3   | root | Y          | Y          |
+| 172.17.0.4   | root | Y          | Y          |
+| 172.17.0.5   | root | Y          | Y          |
++--------------+------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql>
+```
+
+
 <b> Loadbalancing with Nginx </b>
 
 
