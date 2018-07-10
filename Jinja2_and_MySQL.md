@@ -135,3 +135,6 @@ remember that 172.17.0.4 and 172.17.0.5 were web containers, with apache2 on the
 
 
 Fini!
+
+
+And since we have had enough examples with MySQL, let's deploy a Jupyter environment as well. <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jupyter.md">Next... </a>
