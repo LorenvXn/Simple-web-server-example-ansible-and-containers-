@@ -7,6 +7,16 @@ let's use Jinja2 & Python, and check those links from a browser.
 
 Find code at <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/tree/master/Jinja2">Jinja2</a> folder
 
+```
+root@web:/home/ji# tree
+.
+|-- extract.py
+|-- templates
+|   `-- index.html
+`-- ~
+```
+
+
 Our templates/index.html looks as below:
 
 ```
@@ -39,6 +49,15 @@ python extract.py
 
 ... and an <b>output.html</b> file should be created, containing the tablespace's links.
 
+```
+root@web:/home/ji# tree
+.
+|-- extract.py
+|-- output.html
+|-- templates
+|   `-- index.html
+`-- ~
+```
 Our links from original output looks like this:
 
 ```
