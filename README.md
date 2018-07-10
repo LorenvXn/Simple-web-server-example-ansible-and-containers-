@@ -12,6 +12,8 @@
 
 [5.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jinja2_and_MySQL.md"> Jinja2 and MySQL</a>
 
+[6.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jupyter.md"> Jupyter </a>
+
 <br>
 
 <b> Environment Set-up for web servers </b>
