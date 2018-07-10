@@ -1,0 +1,23 @@
+ - hosts: webserver
+   become: true
+     
+   tasks:
+    - name: update python
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - python2.7
+        - python-pip
+        - python-dev 
+  
+    - name: install jupyter
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - ipython
+        - ipython-notebook
+
+    - name: more jupyter
+      command: 'pip install jupyter'
