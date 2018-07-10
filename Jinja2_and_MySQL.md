@@ -68,7 +68,7 @@ root@web:/home/ji# tree
 |   `-- index.html
 `-- ~
 ```
-Our links from original output looks like this:
+Our links from original output look as per below snip:
 
 ```
 [ ... snip ... ]
