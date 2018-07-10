@@ -21,3 +21,5 @@
 
     - name: more jupyter
       command: 'pip install jupyter'
+
+#you might wanna try pip3
