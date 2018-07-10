@@ -183,4 +183,9 @@ Enter password:
 
 ```
 
+
+
+Now, let's check these links from a browser, with the help of Python and Jinja2 ... <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jinja2_and_MySQL.md">onto the next one!</a>
+
+
 Fini!
