@@ -37,7 +37,7 @@ Just run:
 python extract.py
 ```
 
-... and an output.html file should be created, containing the tablespace's links.
+... and an <b>output.html</b> file should be created, containing the tablespace's links.
 
 Our links from original output looks like this:
 
