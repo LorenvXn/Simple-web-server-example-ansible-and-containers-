@@ -51,7 +51,8 @@ Our links from original output looks like this:
 It is obviously we won't be able to access those links from a browser.
 
 
-Time for bit of sed jiu-jitsu. While we are here, let's move the changed file under /var/www/html:
+Time for bit of sed jiu-jitsu. While we are here, let's make a copy of the changed output.html file 
+under path /var/www/html:
 
 ```
 more output.html |  sed 's/\[//g' | sed 's/\\\x27//g' | sed 's/\"\x27/\"/g' | \
