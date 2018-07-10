@@ -18,7 +18,7 @@ Our templates/index.html looks as below:
 </head>
 <body>
 <center>
-    <p>{{ urls[0] |length }} links</p>
+    <p>{{ urls |length }} links</p>
 </center>
 <ol align="left">
 {% set counter = 0 -%}
@@ -72,7 +72,7 @@ The links under /var/www/html/output.html file should now be looking as below:
 </head>
 <body>
 <center>
-    <p>1 links</p>
+    <p>12 links</p>
 </center>
 <ol align="left">
 
