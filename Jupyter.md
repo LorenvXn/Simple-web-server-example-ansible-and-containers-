@@ -14,7 +14,7 @@ root@web2:~# jupyter notebook  --ip=172.17.0.5 --port=81 --allow-root
 
 
 
-Let's connect to database from Jupyter notebook:
+Let's connect to database from Jupyter notebook,on web1 container:
 
 ```
 root@web2:~# jupyter notebook  --ip=172.17.0.4 --port=81 --allow-root
