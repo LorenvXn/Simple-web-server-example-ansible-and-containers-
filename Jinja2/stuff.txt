@@ -1,1 +1,2 @@
 
+For more details, check https://github.com/mjhea0/thinkful-mentor/tree/master/python/jinja
