@@ -59,9 +59,41 @@ sed 's/\]//g' | sed 's/\\\x27//g' | sed 's/\x27\"/\"/g' > /var/www/html/output.h
 ```
 
 The links under /var/www/html/output.html file should now be looking as below:
+[final /var/www/html/output.html form]
+
 
 ```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Munchkin links</title>
+</head>
+<body>
+<center>
+    <p>1 links</p>
+</center>
+<ol align="left">
+
+<li><a href="http://cats.wikia.com">'http://cats.wikia.com'</a></li>
+
+<li><a href="https://www.wikia.com/signin?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29">'https://www.wikia.com/signin?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%
+29'</a></li>
+
+<li><a href="https://www.wikia.com/register?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Breed%29">'https://www.wikia.com/register?redirect=http%3A%2F%2Fcats.wikia.com%2Fwiki%2FMunchkin_%28Br
+eed%29'</a></li>
+
 <li><a href="http://cats.wikia.com/wiki/Main_Page">'http://cats.wikia.com/wiki/Main_Page'</a></li>
 <li><a href="http://cats.wikia.com/wiki/Special:WikiActivity">'http://cats.wikia.com/wiki/Special:WikiActivity'</a></li>
+<li><a href="http://cats.wikia.com/wiki/Special:Random">'http://cats.wikia.com/wiki/Special:Random'</a></li>
+<li><a href="http://cats.wikia.com/wiki/Special:Videos">'http://cats.wikia.com/wiki/Special:Videos'</a></li>
+<li><a href="http://cats.wikia.com/wiki/Special:Images">'http://cats.wikia.com/wiki/Special:Images'</a></li>
+<li><a href="http://cats.wikia.com/wiki/Special:Forum">'http://cats.wikia.com/wiki/Special:Forum'</a></li>
+<li><a href="http://ja.cats.wikia.com/wiki/">'http://ja.cats.wikia.com/wiki/'</a></li>
+<li><a href="http://ru.cats.wikia.com/wiki/">'http://ru.cats.wikia.com/wiki/'</a></li>
+<li><a href="http://cats.wikia.com/wiki/Munchkin_(Breed)?oldid=12127">'http://cats.wikia.com/wiki/Munchkin_(Breed)?oldid=12127'</a></li>
+</ol>
+</body>
+</html>
 ```
 
