@@ -10,8 +10,8 @@
     - name: Download java
       command: 'wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense={{license}}" {{ link }}  -P /opt/'
 
-    - name: Extract java
+   - name: Extract java
       unarchive: src=/opt/{{ packages }}  dest=/opt/ copy=no
    
-    - name: Java home
-      lineinfile: dest=/etc/environment line="export JAVA_HOME=/opt/jdk1.8.0_171" 
+   # - name: Java home
+   #   lineinfile: dest=/etc/environment line="export JAVA_HOME=/opt/jdk1.8.0_171" 
