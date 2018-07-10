@@ -59,6 +59,7 @@ sed 's/\]//g' | sed 's/\\\x27//g' | sed 's/\x27\"/\"/g' > /var/www/html/output.h
 ```
 
 The links under /var/www/html/output.html file should now be looking as below:
+
 [final /var/www/html/output.html form]
 
 
