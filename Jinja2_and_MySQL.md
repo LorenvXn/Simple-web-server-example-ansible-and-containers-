@@ -51,15 +51,15 @@ Our links from original output looks like this:
 It is obviously we won't be able to access those links from a browser.
 
 
-Time for bit of sed jiu-jitsu. While we are here, let's make a copy of the changed output.html file 
-under path /var/www/html:
+Time for bit of sed jiu-jitsu. While we are here, let's make a copy of the changed <b>output.html</b> file 
+under path <b>/var/www/html</b>:
 
 ```
 more output.html |  sed 's/\[//g' | sed 's/\\\x27//g' | sed 's/\"\x27/\"/g' | \
 sed 's/\]//g' | sed 's/\\\x27//g' | sed 's/\x27\"/\"/g' > /var/www/html/output.html
 ```
 
-The links under /var/www/html/output.html file should now be looking as below:
+The links under <b>/var/www/html/output.html</b> file should now be looking as below:
 
 [final /var/www/html/output.html form]
 
