@@ -3,7 +3,7 @@
 
 
 Now that we have our tablespace populated with munchkin links, and there is an apache2 running on that container, 
-let's use Jinja2 & Python, to extract those links from tablespace,  and check them from a browser.
+let's use Jinja2 & Python, and check those links from a browser.
 
 Find code at <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/tree/master/Jinja2">Jinja2</a> folder
 
