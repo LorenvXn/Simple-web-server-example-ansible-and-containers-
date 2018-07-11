@@ -14,6 +14,8 @@
 
 [6.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jupyter.md"> Jupyter </a>
 
+[7.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Run%20Ansible%20with%20Python/Ansible_and_Python.md"> Execute Ansible playbooks with Python </a>
+
 <br>
 
 <b> Environment Set-up for web servers </b>
