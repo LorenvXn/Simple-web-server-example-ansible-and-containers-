@@ -11,7 +11,7 @@ from ansible.vars.manager import VariableManager
 from collections import namedtuple
 
 loader = DataLoader()
-hosts = InventoryManager(loader=loader, sources=sys.argv[1])
+hosts_path = InventoryManager(loader=loader, sources=sys.argv[1])
 variable_manager = VariableManager(loader=loader, inventory=hosts)
 
 playbook_path = sys.argv[2]
@@ -31,7 +31,7 @@ options = Options(listtags=False, listtasks=False, listhosts=False, syntax=False
 		  become_user='tron', verbosity=None, check=False, diff=False)
 
 
-play = PlaybookExecutor(playbooks=[playbook_path], inventory=hosts, 
+play = PlaybookExecutor(playbooks=[playbook_path], inventory=hosts_path, 
 			variable_manager=variable_manager, loader=loader, options=options, passwords={})
 
 results = play.run()
