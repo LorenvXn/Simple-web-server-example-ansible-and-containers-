@@ -136,7 +136,7 @@ root@web1:/home/munchkin# tree
 ```
 3.4) Build:
 ```
-root@web1:/home/munchkin# clean install
+root@web1:/home/munchkin# mvn clean install
 root@web1:/home/munchkin# mvn exec:java -Dexec.mainClass="com.mymunchkin.app.Main"
 [INFO] Scanning for projects...
 [INFO] 
