@@ -1,0 +1,1 @@
+print df[["Salary","Age","Hired",]].describe(percentiles=(.75,.90,.99))
