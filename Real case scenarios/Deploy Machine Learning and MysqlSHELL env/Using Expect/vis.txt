@@ -1,1 +1,0 @@
-df.groupby(['Gender']).mean()['Salary'].plot(kind='bar')
