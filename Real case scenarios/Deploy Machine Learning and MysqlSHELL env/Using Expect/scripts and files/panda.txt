@@ -1,0 +1,6 @@
+df = pd.DataFrame({'Gender': gender,
+                   'Salary': salary,
+                   'Age': age,
+                   'Hired': hired,
+                   'Department': department
+                   })
