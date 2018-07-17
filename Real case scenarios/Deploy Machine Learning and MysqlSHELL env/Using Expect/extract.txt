@@ -1,4 +1,0 @@
-def column_to_list(column_name):
-    temp_var = db.data.select([column_name]).execute().fetch_all()
-    return [val for sublist in temp_var for val in sublist]
-
