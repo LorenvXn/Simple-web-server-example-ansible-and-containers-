@@ -3,6 +3,8 @@
 ######
 # script based on Percona material:
 # https://www.percona.com/blog/2017/01/16/ad-hoc-data-visualization-and-machine-learning-with-mysqlshell/
+# ... and ...
+# https://github.com/datacharmer/test_db
 #####
 
 #### create database employees ###
@@ -64,6 +66,25 @@ CREATE TABLE salaries (
     FOREIGN KEY (`emp_no`) REFERENCES employees (`emp_no`) ON DELETE CASCADE,
     PRIMARY KEY (`emp_no`, `from_date`)
 );"
+
+### insert data into tables ###
+### supposing the dump files are under /test folder
+
+docker exec shelby mysql -uroot -pabc123 -e "use employees;
+SELECT 'LOADING departments' as 'INFO';
+source /test/load_departments.dump ;
+SELECT 'LOADING employees' as 'INFO';
+source /test/load_employees.dump ;
+SELECT 'LOADING dept_emp' as 'INFO';
+source /test/load_dept_emp.dump ;
+SELECT 'LOADING dept_manager' as 'INFO';
+source /test/load_dept_manager.dump ;
+SELECT 'LOADING titles' as 'INFO';
+source /test/load_titles.dump ;
+SELECT 'LOADING salaries' as 'INFO';
+source /test/load_salaries1.dump ;
+source /test/load_salaries2.dump ;
+source /test/load_salaries3.dump ;"
 
 ### create table data ###
 
