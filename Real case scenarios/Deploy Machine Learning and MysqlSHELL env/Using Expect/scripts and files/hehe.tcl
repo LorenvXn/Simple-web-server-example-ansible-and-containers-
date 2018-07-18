@@ -47,5 +47,21 @@ expect "mysql-py>" { send "plt.plot(100) \r"}
 sleep 2
 expect "mysql-py>" { send "plt.savefig('/home/shipit.png') \r"}
 sleep 2
+expect  "mysql-py>" { send [exec cat /age_sal.txt ] }
+sleep 2
+send "\r\n"
+expect "mysql-py>" { send "\r"}
+expect "mysql-py>" { send "plt.plot(100) \r"}
+sleep 2
+expect "mysql-py>" { send "plt.savefig('/home/shipit_1.png') \r"}
+sleep 2
+expect "mysql-py>" { send [exec cat /hired_sal.txt ] }
+sleep 2
+send "\r\n"
+expect "mysql-py>" { send "\r"}
+expect "mysql-py>" { send "plt.plot(100) \r"}
+sleep 2
+expect "mysql-py>" { send "plt.savefig('/home/shipit_2.png') \r"}
+sleep 2
 
 interact
