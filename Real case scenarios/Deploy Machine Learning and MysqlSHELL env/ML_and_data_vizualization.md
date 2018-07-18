@@ -78,7 +78,7 @@ Bye!
 ```
 <br>
 
-5) Obtain vizualization of the data with the help of nginx and running expect scripting
+5) Obtain vizualization of the data with the help of nginx & running Expect script
 
 <i> files *.txt for data analysis were put under "/". 
  Plot images are saved under /home, and then sent to /var/www/html. 
