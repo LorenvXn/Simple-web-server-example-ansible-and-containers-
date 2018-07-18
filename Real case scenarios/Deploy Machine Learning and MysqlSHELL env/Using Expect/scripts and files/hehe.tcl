@@ -3,7 +3,7 @@
 set timeout 10
 
 spawn  mysqlsh --uri root:abc123@localhost:33060/employees  --py
-expect "mysql-py>" { send "db.employees.select().limit(5) \r" }
+#expect "mysql-py>" { send "db.employees.select().limit(5) \r" }
 expect "mysql-py>" { send "db \r"}
 expect "mysql-py>" { send "session \r"}
 expect "mysql-py>" { send "import matplotlib \r" }
