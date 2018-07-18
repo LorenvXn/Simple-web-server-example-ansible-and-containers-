@@ -67,8 +67,32 @@ CREATE TABLE salaries (
     PRIMARY KEY (`emp_no`, `from_date`)
 );"
 
+
+### supposing the dump files are copied under /test folder
+### of the container shelby
+
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_salaries1.dump 
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_salaries2.dump
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_salaries3.dump
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_departments.dump
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_titles.dump
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_dept_manager.dump
+docker exec shelby wget -P /test https://github.com/datacharmer/test_db/blob/master/load_dept_emp.dump
+
+##################
+# Check it in a simple way:
+# root@tr0n:~# docker exec shelby ls /test
+# load_departments.dump
+# load_dept_emp.dump
+# load_dept_manager.dump
+# load_salaries1.dump
+# load_salaries2.dump
+# load_salaries3.dump
+# load_titles.dump
+
+
+
 ### insert data into tables ###
-### supposing the dump files are under /test folder
 
 docker exec shelby mysql -uroot -pabc123 -e "use employees;
 SELECT 'LOADING departments' as 'INFO';
