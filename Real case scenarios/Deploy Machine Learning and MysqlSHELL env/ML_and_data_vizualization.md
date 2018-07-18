@@ -84,16 +84,17 @@ Bye!
  path under the .tcl script </i>
 
 Run the <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/scripts%20and%20files/hehe.tcl"> Expect</a> script to obtain relationship between:
-
+<br>
 a) Salary and Gender
 
 ![ScreenShot](https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/ship_it(test).png)
 
-
+<br>
 b) Age and Salary
 
 ![ScreenShot](https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/age_and_sal.png)
 
+<br>
 c) Hired and Salary
 
 ![ScreenShot](https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/hired_salary.png)
@@ -124,8 +125,9 @@ root@tr0n:~# docker exec shelby cat /var/www/html/pfehehe.html
 
 ```
 <i> ...indeed, it needs more automation on this level... </i>
-<i> to be continued </it>
+<i> to be continued </i>
 
+<br>
 6) Make predictions
 
 <i> to be continued </i> 
