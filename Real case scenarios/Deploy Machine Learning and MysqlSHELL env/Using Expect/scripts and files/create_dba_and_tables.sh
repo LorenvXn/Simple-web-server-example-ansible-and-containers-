@@ -20,7 +20,7 @@ docker exec shelby mysql -uroot -pabc123 -e "use employees; CREATE TABLE employe
 );" 
 
 
-### create table departments ###
+### create tables departments, dept_emp, table_titles, salaries  ###
 
 docker exec shelby mysql -uroot -pabc123 -e "use employees; CREATE TABLE departments (
     dept_no     CHAR(4)         NOT NULL,
@@ -29,8 +29,6 @@ docker exec shelby mysql -uroot -pabc123 -e "use employees; CREATE TABLE departm
     UNIQUE  KEY (dept_name)
 );
 
-
-### create table dept_emp ###
 
 CREATE TABLE dept_emp (
     emp_no      INT             NOT NULL,
@@ -42,7 +40,6 @@ CREATE TABLE dept_emp (
     PRIMARY KEY (emp_no,dept_no)
 );
 
-### create table titles ###
 
 CREATE TABLE titles (
     emp_no      INT             NOT NULL,
@@ -53,7 +50,7 @@ CREATE TABLE titles (
     PRIMARY KEY (emp_no,title, from_date)
 );
 
-### create table salaries ###
+
 
 CREATE TABLE salaries (
     emp_no      INT             NOT NULL,
@@ -64,7 +61,19 @@ CREATE TABLE salaries (
     PRIMARY KEY (emp_no, from_date)
 );"
 
+### create table data ###
 
+docker exec shelby mysql -uroot -pabc123 -e "use employees; CREATE TABLE `data` (
+  `emp_no` int(11) NOT NULL,
+  `age` int(11) DEFAULT NULL,
+  `hired` int(11) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `salary` int(11) DEFAULT NULL,
+  `department` int(11) DEFAULT NULL,
+  PRIMARY KEY (`emp_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+
+### insert data into data ### 
 docker exec shelby mysql -uroot -pabc123 -e "use employees; INSERT INTO data SELECT employees.emp_no, 
 YEAR(now()) - YEAR(birth_date) as age, YEAR(now()) - YEAR(hire_date) as hired, 
 IF(gender='M',0,1) as gender, max(salary) as salary, RIGHT(dept_no,1) as department from employees, salaries, dept_emp 
