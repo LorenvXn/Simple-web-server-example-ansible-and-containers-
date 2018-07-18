@@ -101,7 +101,7 @@ Pictures have been obtained with the help of nginx - creating a html page that w
 <i> for instance, for Hired and Salary, the /var/www/html/pfehehe.html looks as below: </i>
 
 ```
-root@tr0n:~# docker exec 7c7a928a40af cat /var/www/html/pfehehe.html
+root@tr0n:~# docker exec shelby cat /var/www/html/pfehehe.html
 <!DOCTYPE html>
 <html>
 <head>
