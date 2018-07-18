@@ -1,5 +1,9 @@
 #!/usr/bin/sh 
 
+######
+# script based on Percona material"
+# https://www.percona.com/blog/2017/01/16/ad-hoc-data-visualization-and-machine-learning-with-mysqlshell/
+#####
 
 #### create database employees ###
 
