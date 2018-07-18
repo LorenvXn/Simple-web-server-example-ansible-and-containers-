@@ -96,7 +96,7 @@ c) Hired and Salary
 ![ScreenShot](https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/hired_salary.png)
 
 
-Pictures have been obtain with the help of nginx - creating a html page that will contain the image source.
+Pictures have been obtained with the help of nginx - creating a html page that will contain the image source.
 
 <i> to be continued </it>
 
