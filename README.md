@@ -14,8 +14,13 @@
 
 [6.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Jupyter.md"> Jupyter </a>
 
-[7.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Run%20Ansible%20with%20Python/Ansible_and_Python.md"> Execute Ansible playbooks with Python </a>
+[7.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Run%20Ansible%20with%20Python/Ansible_and_Python.md"> Execute Ansible playbooks with Python </a> <br>
 
+[8.] <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/tree/master/Real%20case%20scenarios">Real case scenarios:</a> 
+
+[a.] Deploy Machine Learning and Data Visualization env</a><br>
+ <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/ML_and_data_vizualization.md">
+         [a.1.] (in progress) Using Expect for automation, and Nginx for Visualization purposes</a>
 <br>
 
 <b> Environment Set-up for web servers </b>
