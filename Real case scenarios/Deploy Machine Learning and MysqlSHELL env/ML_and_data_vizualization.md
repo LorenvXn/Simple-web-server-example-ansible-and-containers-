@@ -96,8 +96,31 @@ c) Hired and Salary
 ![ScreenShot](https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/hired_salary.png)
 
 
-Pictures have been obtained with the help of nginx - creating a html page that will contain the image source.
+Pictures have been obtained with the help of nginx - creating a html page that will contain the image source:
 
+<i> for instance, for Hired and Salary, the /var/www/html/pfehehe.html looks as below: </i>
+
+```
+root@tr0n:~# docker exec 7c7a928a40af cat /var/www/html/pfehehe.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hired and Salary</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+ <img src="shipit_2.png" />
+</body>
+</html>
+
+```
+<i> ...indeed, it needs more automation on this level... </i>
 <i> to be continued </it>
 
 6) Make predictions
