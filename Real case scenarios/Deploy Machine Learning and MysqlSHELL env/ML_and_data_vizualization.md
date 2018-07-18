@@ -76,9 +76,12 @@ mysql-py> db.employees.select().limit(5)
 mysql-py> \q
 Bye!
 ```
+<br>
 
 5) Obtain vizualization of the data with the help of nginx and running expect scripting
 
+<i> files *.txt for data analysis were put under "/". Move them at your will, but do not forget to change
+ path under the .tcl script </i>
 
 Run the <a href="https://github.com/LorenvXn/Simple-web-server-example-ansible-and-containers-/blob/master/Real%20case%20scenarios/Deploy%20Machine%20Learning%20and%20MysqlSHELL%20env/Using%20Expect/scripts%20and%20files/hehe.tcl"> Expect</a> script to obtain relationship between:
 
