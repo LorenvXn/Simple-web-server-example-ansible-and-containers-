@@ -5,7 +5,7 @@
 
 
 
-// here to be added link to how to implement environment in ansible
+<i> ~~  here to be added link to how to implement environment in ansible  ~~  </i>
 
 1) Make sure mysql service is running:
 
