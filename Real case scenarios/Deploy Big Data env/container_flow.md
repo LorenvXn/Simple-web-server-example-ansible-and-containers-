@@ -1,5 +1,5 @@
 
-Possible deployment flow in order (for one container):
+Possible deployment flow (in order, for one container):
 
 
 ```
