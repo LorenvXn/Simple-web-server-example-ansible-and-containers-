@@ -1,5 +1,6 @@
 
 Possible deployment flow (in order, for one container):
+(magic networking to happen if multiple containers)
 
 
 ```
