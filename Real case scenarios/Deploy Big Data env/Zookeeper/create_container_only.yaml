@@ -1,0 +1,11 @@
+- hosts: '{{ machine }}'
+  remote_user: tron
+  become: yes
+  become_method: sudo
+  
+  tasks:
+
+  - name: create docker container
+    command: bash run_container.sh
+    
+    # in case you need more containers, u sweaty nerdz
