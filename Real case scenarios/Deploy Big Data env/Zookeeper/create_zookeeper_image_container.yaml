@@ -1,6 +1,6 @@
  - name: Build an image and container for a remote docker host
    hosts: '{{ machine }}'
-   remote_user: 
+   remote_user: tron
    become: yes
    become_method: sudo
    tasks:
@@ -10,8 +10,8 @@
          dest: <remote path where to copy Dockerfile and scripts>
          src: Dockerfile
          dest: <remote path where to copy Dockerfile and scripts>
-         owner: 
-         group: 
+         owner: tron
+         group: tron
 
      - name: build the image Zookeeper
        command: docker build -t <image name> <remote path of Dockerfile>
