@@ -8,4 +8,8 @@
   - name: create docker container
     command: bash run_container.sh
     
+    
     # in case you need more containers, u sweaty nerdz
+    
+    #yes, yes... I know, there's a docker_container in ansible 2.6 ... 
+    #but the status keeps failing on me /sighs
