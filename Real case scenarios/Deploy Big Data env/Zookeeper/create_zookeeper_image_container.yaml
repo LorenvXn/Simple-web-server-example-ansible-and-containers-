@@ -1,0 +1,21 @@
+ - name: Build an image and container for a remote docker host
+   hosts: '{{ machine }}'
+   remote_user: 
+   become: yes
+   become_method: sudo
+   tasks:
+     - name: copy files from controller to remote
+       copy:
+         src: run_container.sh
+         dest: <remote path where to copy Dockerfile and scripts>
+         src: Dockerfile
+         dest: <remote path where to copy Dockerfile and scripts>
+         owner: 
+         group: 
+
+     - name: build the image Zookeeper
+       command: docker build -t <image name> <remote path of Dockerfile>
+ 
+     - name: create docker container
+       command: bash run_container.sh
+
