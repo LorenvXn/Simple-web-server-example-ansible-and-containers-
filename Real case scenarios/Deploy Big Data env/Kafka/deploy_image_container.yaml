@@ -22,7 +22,7 @@
        
     
 # Short example how to use it: 
-# ansible-playbook  -u $USER create_container.yml  --extra-var   "machine=192.168.0.11" --ask-become-pass
+# ansible-playbook  -u $USER deploy_image_container.yml  --extra-var   "machine=192.168.0.11" --ask-become-pass
       
       
       
