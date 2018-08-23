@@ -28,4 +28,4 @@
       
       # Ansible 2.4 &2,6 are seriously disappointing when it comes to docker containers
       # so, just be calling some scripts to help us deploying the containers
-      # without many headaches ... corporations will brag they can do it better! LOL
+      # without many headaches ... corporations will brag they can do it better with kub3rnetes! LOL
