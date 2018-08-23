@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # keeping it as a prototype for now
-# needs more automation 
+# needs more automation for those <>  values ... why make other's people easier for noW!? hue hue hue
  
 
 docker create -i -t --name <kafka_container> \
