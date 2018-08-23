@@ -5,7 +5,7 @@
   
   tasks:
 
-  - name: create docker container
+  - name: create Zookeeper container
     command: bash run_container.sh
     
     
