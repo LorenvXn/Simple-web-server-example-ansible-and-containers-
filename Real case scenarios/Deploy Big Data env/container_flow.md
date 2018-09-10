@@ -10,14 +10,14 @@ Possible deployment flow (in order, for one container): <br>
                                         +-------------------------------+
                                                     |
                                                     |
-                                                    | <-- modify conf.yaml accordingly
+                                                    | 
                                                     |    
                                         +-------------------------+
                                         |  deploy container       |
                                         +-------------------------+
                                                     |   
-                                                    | <-- modify configuration files
-                                                    |     for specific installed service
+                                                    | 
+                                                    |    
                                                     |
                                         +-------------------------+
                                         |       start container   |
